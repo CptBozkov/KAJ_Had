@@ -7,7 +7,11 @@ let playerData = [
     { name: "Fred", color: [255, 0, 0], left: "a", right: "d" },
     { name: "Greenlee", color: [0, 255, 0], left: "4", right: "6"},
 ];
-playerData = JSON.parse(localStorage.getItem("hadPlayerData"));
+let item = localStorage.getItem("hadPlayerData");
+if (item != null)
+{
+    playerData = JSON.parse(item);
+}
 
 
 function removePlayer(name)
