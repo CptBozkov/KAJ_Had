@@ -4,9 +4,8 @@ body {
     justify-content: center;
     align-items: flex-start;
     margin: 0px;
-    padding: 10vh 0%;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     background-color: var(--background);
     animation: slideIn 0.5s forwards;
@@ -42,15 +41,22 @@ h1, h2{
     margin: 10px;
     color:var(--primary)
 }
+
 .main {
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
+    padding: 10vh 0%;
+    width: 100%;
+    height: 100%;
+}
+.main-content{
     width: 950px;
     max-width: 950px;
 }
 .container {
-    min-width: 300px;
-    max-width: 500px;
+    min-width: 400px;
+    max-width: 400px;
     margin: 20px auto;
     padding: 20px;
     border: none;
@@ -101,6 +107,7 @@ form {
     margin: 5px;
 }
 
+
 .player-listing {
     display: flex;
     align-items: center;
@@ -114,7 +121,7 @@ form {
 }
 .player-listing label {
     margin-right: 10px;
-    text-shadow: 2px 2px 4px var(--shadow);
+    text-shadow: 1px 1px 2px var(--shadow);
 }
 .player-listing div {
     display: flex;
@@ -162,35 +169,86 @@ form {
 @keyframes slideToTheRight {
     0% {transform: translateX(-50%);}
     50% {transform: translateX(-50%);}
-    70% {transform: translateX(10%);}
+    70% {transform: translateX(3%);}
     100% {transform: translateX(0);}
 }
 
 @keyframes slideToTheLeft {
     0% {transform: translateX(50%);}
     50% {transform: translateX(50%);}
-    70% {transform: translateX(-10%);}
+    70% {transform: translateX(-3%);}
     100% {transform: translateX(0);}
 }
 
 @keyframes slideUpwards {
     0% {transform: translateY(120%);}
     40% {transform: translateY(120%);}
-    60% {transform: translateY(-10%);}
+    60% {transform: translateY(-20%);}
     90% {transform: translateY(0);}
 }
 
 @keyframes slideDownwards {
     0% {transform: translateY(-120%);}
     40% {transform: translateY(-120%);}
-    60% {transform: translateY(10%);}
+    60% {transform: translateY(20%);}
     90% {transform: translateY(0);}
 }
 
-@media only screen and (max-width: 800px) {
+#playersList {
+    padding: 0;
+}
+
+#help {
+    position:absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.helpPopUp {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 20vh;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.helpPopUp-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 370px;
+    width: 550px;
+    border-radius: 5px;
+    padding: 20px;
+
+}
+
+.helpPopUp-visible .helpPopUp{
+    visibility: visible;
+}
+
+.helpPopUp-visible .main{
+    filter: blur(3px) grayscale(100%) ;
+    transition: filter .5s ease;
+}
+
+body:not(.helpPopUp-visible) .main {
+    filter: blur(0) grayscale(0);
+    transition: filter .5s ease;
+}
+
+@media only screen and (max-width: 920px) {
     .container-players {
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
     }
     body {

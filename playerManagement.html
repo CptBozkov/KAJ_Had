@@ -3,52 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Management</title>
+    <title>Achtung Die KAJ</title>
     <link rel="stylesheet" href="styles/vars.css">
     <link rel="stylesheet" href="styles/playerManagement.css">
 </head>
 <body>
     <div class="main">
-        <div class="container container-header">
-            <div class="header">
-                <h1>Player Management</h1>
-            </div>
-        </div>
-        
-        <div class="container-players">
-            <div class="container container-newPlayer">
+        <button id="help">Help</button>
+        <div class="main-content">
+            <div class="container container-header">
                 <div class="header">
-                    <h2>New Player</h2>
+                    <h1>Achtung Die KAJ</h1>
                 </div>
-                <form id="addPlayerForm">
-                    <div class="form-group">
-                        <label for="playerName">Name:</label>
-                        <input type="text" id="playerName">
-                    </div>
-                    <div class="form-group">
-                        <label for="playerColor">Color:</label>
-                        <input type="color" id="playerColor">
-                        <button id="randomizeColor" type="button">Random</button>
-                    </div>
-                    <div class="form-group">
-                        <button id="addPlayer" type="button">Add</button>
-                    </div>
-                </form>
             </div>
-            <div class="container container-listing">
-                <ul id="playersList">
-                    <li class="player-listing">
-                        <label>Fred</label>
-                        <button>Remove</button>
-                    </li>
-                </ul>
+            <div class="container-players">
+                <div class="container container-newPlayer">
+                    <div class="header">
+                        <h2>New Player</h2>
+                    </div>
+                    <form id="addPlayerForm">
+                        <div class="form-group">
+                            <label for="playerName">Name:</label>
+                            <input type="text" id="playerName">
+                        </div>
+                        <div class="form-group">
+                            <label for="playerColor">Color:</label>
+                            <input type="color" id="playerColor">
+                            <button id="randomizeColor" type="button">Random</button>
+                        </div>
+                        <div class="form-group">
+                            <button id="addPlayer" type="button">Add</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container container-listing">
+                    <ul id="playersList">
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="container container-startGame">
+                <div class="header">
+                    <button id="startGame" type="button">Start</button>
+                </div>
             </div>
         </div>
-        
-        <div class="container container-startGame">
-            <div class="header">
-                <button id="startGame" type="button">Start</button>
-            </div>
+    </div>
+    <div class="helpPopUp">
+        <div class="helpPopUp-content">
+            <p>Welcome to Achtung Die KAJ, a recreation of the game Achtung Die Kurve.</p>
+
+            <p>To begin, add at least two players and set their controls by clicking the circular buttons next to their names. The button on the left is for turning left, while the one on the right is for turning right, respectively. The number of players is unlimited, so gather all your friends!</p>
+            
+            <p>When you're ready, press the start button. The game will commence immediately, and your objective is to survive and be the first to reach 5 points. Once a player reaches 5 points, a text message will appear in the middle of the screen, announcing the winner, and a new game will start promptly.</p>
+            
+            <p>Additionally, there are buffs and debuffs, but I'll let you discover those on your own. Have fun!</p>
+            <button id="closeHelp">Close</button>
         </div>
     </div>
     

@@ -1,5 +1,5 @@
 const minPlayers = 1;
-const maxNameLength = 16;
+const maxNameLength = 10;
 const darkestVal = 20;
 const bindingButtonDefault = "#fff";
 const bindingButtonSelected = "#999";
@@ -179,6 +179,25 @@ startGameButtonEl.addEventListener("click", () =>
     localStorage.setItem("hadPlayerData", JSON.stringify(playerData));
     window.location.href = "game.html";
 });
+
+const helpButton = document.getElementById("help");
+const closeHelpButton = document.getElementById("closeHelp");
+helpButton.addEventListener("click", changeHelpVisible);
+closeHelpButton.addEventListener("click", changeHelpVisible);
+
+let helpVisible = false;
+function changeHelpVisible()
+{
+    helpVisible = !helpVisible;
+    if (helpVisible)
+    {
+        document.body.classList.add("helpPopUp-visible")
+    }
+    else 
+    {
+        document.body.classList.remove("helpPopUp-visible")
+    }
+}
 
 const randomColorEl = document.getElementById("randomizeColor");
 randomColorEl.addEventListener("click", () =>
