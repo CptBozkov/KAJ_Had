@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Management</title>
+    <link rel="stylesheet" href="styles/vars.css">
+    <link rel="stylesheet" href="styles/playerManagement.css">
+</head>
+<body>
+    <div class="main">
+        <div class="container container-header">
+            <div class="header">
+                <h1>Player Management</h1>
+            </div>
+        </div>
+        
+        <div class="container-players">
+            <div class="container container-newPlayer">
+                <div class="header">
+                    <h2>New Player</h2>
+                </div>
+                <form id="addPlayerForm">
+                    <div class="form-group">
+                        <label for="playerName">Name:</label>
+                        <input type="text" id="playerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="playerColor">Color:</label>
+                        <input type="color" id="playerColor">
+                        <button id="randomizeColor" type="button">Random</button>
+                    </div>
+                    <div class="form-group">
+                        <button id="addPlayer" type="button">Add</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container container-listing">
+                <ul id="playersList">
+                    <li class="player-listing">
+                        <label>Fred</label>
+                        <button>Remove</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container container-startGame">
+            <div class="header">
+                <button id="startGame" type="button">Start</button>
+            </div>
+        </div>
+    </div>
+    
+<script src="modules/PlayerManagement.js" type="module"></script>
+</body>
+</html>
