@@ -235,12 +235,11 @@ form {
 }
 
 .helpPopUp-visible .main{
-    filter: blur(3px) grayscale(100%) ;
+    filter: blur(3px) grayscale(100%) brightness(50%);
     transition: filter .5s ease;
 }
 
 body:not(.helpPopUp-visible) .main {
-    filter: blur(0) grayscale(0);
     transition: filter .5s ease;
 }
 
