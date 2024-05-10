@@ -1,13 +1,13 @@
+// Class used for generating HTML elements on the go
 export class HTMLGenerator
 {
+    // Updates the players' scores
     static updatePlayerScores(ulEl, players)
     {
         ulEl.innerHTML = "";
-        console.log(players);
         players = players.sort(function(a, b) {
             return b.getPoints() - a.getPoints();
         });
-        console.log(players);
         for (let i = 0; i < players.length; i++)
         {
             const p = players[i];

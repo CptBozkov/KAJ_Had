@@ -1,5 +1,6 @@
 import { CanvasPowerUp, PowerUp } from "./PowerUp.js"
 
+// Class containing the canvas which is used to draw the entire game on
 export class Canvas
 {
     #canvas;
@@ -20,6 +21,7 @@ export class Canvas
         this.#spawnPowerUpId = null;
     }
 
+    // Set new size for the canvas
     setSize(sizeX, sizeY)
     {
         this.#sizeX = sizeX;
@@ -28,11 +30,15 @@ export class Canvas
         this.#canvas.height = sizeY;
     }
 
+    // Returns the width of the canvas
     getSizeX() { return this.#sizeX; }
+    // Returns the height of the canvas
     getSizeY() { return this.#sizeY; }
 
+    // Returns the canvas HTML element
     getCanvasElement() { return this.#canvas; }
     
+    // Clears everything on the canvas with the clear color
     clear()
     {
         this.#context.fillStyle = `rgba(${this.#clearColor[0]}, ${this.#clearColor[1]}, ${this.#clearColor[2]}, 1)`
@@ -45,6 +51,7 @@ export class Canvas
         }
     }
 
+    // Spawns a random powerup somewhere inside the playing area
     spawnPowerUp()
     {
         let minTime = 1000; 
@@ -83,6 +90,7 @@ export class Canvas
         this.#context.fillText(powerUp.getPowerUpText()[0], posX - textWidth / 2, posY + textHeight / 2 + powerUp.getPowerUpText()[1]);
     }
 
+    // Makes the player pickup the closest power up 
     pickUpPowerUp(player)
     {
         for (let i = 0; i < this.#canvasPowerUps.length; i++)
@@ -109,6 +117,7 @@ export class Canvas
         
     }
 
+    // Runs a func for every pixel in a disc shaped area
     #runForDisc(posX, posY, r, func)
     {
         let d = r * 2;
@@ -132,6 +141,7 @@ export class Canvas
         }
     }
 
+    // Returns true if the player collides with a wall or a player 
     playerCollides(player)
     {
         let posX = player.getPosX();
@@ -175,6 +185,7 @@ export class Canvas
         return false;
     }
 
+    // Renders a player on the canvas
     renderPlayer(player)
     {
         let posX = player.getPosX();
@@ -207,6 +218,7 @@ export class Canvas
         this.#context.putImageData(imageData, wPosX, nPosY);
     }
 
+    // Writes a message on the canvas
     writeMessage(message, color)
     {
         this.#context.font = "40px Arial";

@@ -2,6 +2,7 @@ import { EventHandler } from "./EventHandler.js";
 import { Canvas } from "./Canvas.js";
 import { HTMLGenerator } from "./HTMLGenerator.js";
 
+// Class containing the main game loop and responsible for management of all the game's logics
 export class Game
 {
     #players;
@@ -45,17 +46,20 @@ export class Game
         this.#onRoundEndCallacks = [];
     }
     
+    // Class used to bind a callback from outside the game to react to score change
     addOnRoundEndCallback(callback)
     {
         this.#onRoundEndCallacks.push(callback);
     }
     
+    // Starts the game
     start()
     {
-        this.#reset();
+        this.#resetScores();
         this.#startNextRound();
     }
     
+    // Processes all the specific callbacks
     #processCalbacks(callbacks, ...args)
     {
         for (let i = 0; i < callbacks.length; i++)
@@ -64,7 +68,8 @@ export class Game
         }
     }
 
-    #reset()
+    // Restes the scores
+    #resetScores()
     {
         for (let i = 0; i < this.#players.length; i++)
         {
@@ -74,6 +79,7 @@ export class Game
         }
     }
 
+    // Resets all the players for the next round
     #startNextRound()
     {
         this.#canvas.clear();
@@ -107,6 +113,7 @@ export class Game
         this.#players.push(player);
     }
 
+    // Starts the next round's countdown and at the end starts the main game loop
     #startCountDown(secondsLeft)
     {
         if (this.#mainLoopId != null) return;
@@ -126,6 +133,7 @@ export class Game
         this.#countDownId = setTimeout(this.#startCountDown.bind(this, secondsLeft - 1), 1000);
     }
 
+    // Stops the countdown
     #stopCountdown()
     {
         if (this.#countDownId == null) return;
@@ -134,6 +142,7 @@ export class Game
         this.#countDownId = null;
     }
 
+    // Handles the game's logics
     #update()
     {
         // movement
@@ -163,9 +172,6 @@ export class Game
             p.playCrashSound();
             collisionHappened = true;
         }
-
-        // spawn power up
-        //if (this.#powerUpSpawnerId == null)
 
         if (!collisionHappened) return;
         
@@ -216,14 +222,15 @@ export class Game
             {
                 setTimeout( () => 
                 { 
-                    this.#reset();
+                    this.#resetScores();
                     this.#processCalbacks(this.#onRoundEndCallacks);
                     this.#startNextRound();
                 } , 5000);
             }
         }
-    }    
+    } 
 
+    // Render the players
     #render()
     {
         for (let i = 0; i < this.#players.length; i++)
@@ -233,6 +240,7 @@ export class Game
         }
     }
 
+    // Main game loop
     #mainLoop()
     {
         this.#mainLoopId = requestAnimationFrame(this.#mainLoop.bind(this));
@@ -243,6 +251,7 @@ export class Game
         }
     }
 
+    // Stops the main game loop from outside
     #stopMainLoop()
     {
         if (this.#mainLoopId == null) return;

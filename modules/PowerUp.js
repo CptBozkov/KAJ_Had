@@ -1,3 +1,4 @@
+// Class which wraps the power up and allows it to be placed on the canvas
 export class CanvasPowerUp {
     #posX; #posY;
     #wPosX; #nPosY;
@@ -16,15 +17,23 @@ export class CanvasPowerUp {
         this.#powerUp = powerUp;
     }
 
-    getPosX() { return this.#posX; }
+    // Returns the the power up's position x
+    getPosX() { return this.#posX; }    
+    // Returns the the power up's position y
     getPosY() { return this.#posY; }
+    // Returns the the power up's west boundry
     getWPosX() { return this.#wPosX; }
+    // Returns the the power up's North boundry
     getNPosY() { return this.#nPosY; }
+    // Returns the the power up's radius
     getRadius() { return this.#radius; }
+    // Returns the the power up's iamge data
     getImageData() { return this.#imageData; }
+    // Returns the the held power up itself
     getPowerUp() { return this.#powerUp; }
 }
 
+// Base class for all the power ups
 export class PowerUp {
     #name;
     #duration;
@@ -39,12 +48,14 @@ export class PowerUp {
         this.#powerUpText = powerUpText;
     }
 
+    // Activates the power up's effect
     activate(player)
     {
         console.log(`${this.#name} activated for ${this.#duration} seconds.`);
         this.#callbackId = setTimeout(this.deactivate.bind(this, player), this.#duration)
     }
 
+    // Deactivates the power up's effect
     deactivate(player)
     {
         if (this.#callbackId == null) return;
@@ -54,6 +65,7 @@ export class PowerUp {
         this.#callbackId = null;
     }
 
+    // Returns a random predefined power up
     static GetRandom()
     {
         let powerUps = [// Name | [Text, px Offset] | ms Duration | Multiplier
@@ -67,9 +79,11 @@ export class PowerUp {
         return powerUps[rand];
     }
 
+    // Returns a power up's text
     getPowerUpText() { return this.#powerUpText; }
 }
 
+// Power up which modifies the player's speed coefficient
 export class Speed extends PowerUp
 {
     #speedModifier;
@@ -80,6 +94,7 @@ export class Speed extends PowerUp
         this.#speedModifier = speedModifier;
     }
 
+    // Changes the player's speed modifier to the value
     activate(player)
     {
         super.activate(player);
@@ -87,6 +102,7 @@ export class Speed extends PowerUp
         console.log(`Applying : ${this.#speedModifier}.`);
     }
 
+    // Changes the player's speed modifier back to original value
     deactivate(player)
     {
         super.deactivate(player);
@@ -94,6 +110,7 @@ export class Speed extends PowerUp
     }
 }
 
+// Power up which modifies the player's radius coefficient
 export class Radius extends PowerUp 
 {
     #radiusModifier;
@@ -103,6 +120,7 @@ export class Radius extends PowerUp
         this.#radiusModifier = radiusModifier;
     }
 
+    // Changes the player's radius modifier to the value
     activate(player)
     {
         super.activate(player);
@@ -110,6 +128,7 @@ export class Radius extends PowerUp
         player.addPowerUp(new Invincibility("Shapeshift Invincibility", "I", 200));
     }
     
+    // Changes the player's radius modifier back to original value
     deactivate(player)
     {
         super.deactivate(player);
@@ -118,6 +137,7 @@ export class Radius extends PowerUp
     }
 }
 
+// Power up which modifies the player's invincibility state
 export class Invincibility extends PowerUp
 {
     constructor(name, powerUpText, duration) 
@@ -125,12 +145,14 @@ export class Invincibility extends PowerUp
         super(name, powerUpText, duration);
     }
 
+    // Changes the player's invincibility state to true
     activate(player)
     {
         super.activate(player);
         player.setPowerUpInvincible(true);
     }
     
+    // Changes the player's invincibility state back to the original state
     deactivate(player)
     {
         super.deactivate(player);

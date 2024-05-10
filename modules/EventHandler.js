@@ -1,3 +1,4 @@
+// This class is used to bind game callbacks to window events
 export class EventHandler
 {
     #keys;
@@ -14,11 +15,13 @@ export class EventHandler
         addEventListener("resize", this.#resize.bind(this))
     }
 
+    // Adds a callback which is called on window resize
     addResizeEvent(func)
     {
         this.#resizeEvents.push(func);
     }
 
+    // Adds a callback which is called on a keydown event of a specific key
     addKeyDownEvent(key, func)
     {
         if (this.#keyDownEvents.hasOwnProperty(key))
@@ -29,11 +32,13 @@ export class EventHandler
         this.#keyDownEvents[key] = [func];
     }
     
+    // Returns true if a key is pressed
     getKeyPressed(key)
     {
         return this.#keys[key] == undefined ? false : this.#keys[key];
     }
 
+    // Runs all the window resize callbacks
     #resize()
     {
         for (let i = 0; i < this.#resizeEvents.length; i++)
@@ -42,6 +47,7 @@ export class EventHandler
         }
     }
 
+    // Runs all the apropriate keydown callbacks
     #keydown(e)
     {
         this.#keys[e.key] = true;
@@ -58,6 +64,7 @@ export class EventHandler
         }
     }
 
+    // Resets the key's state
     #keyup(e)
     {
         this.#keys[e.key] = false;

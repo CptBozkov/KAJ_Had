@@ -1,6 +1,8 @@
+// File in which the players are passed to the game, the game is initialized and connected with the scoreboard
 import { Player } from "./Player.js";
 import { Game } from "./Game.js"; 
 import { HTMLGenerator } from "./HTMLGenerator.js"; 
+
 
 let game = new Game(1000, 1000);
 

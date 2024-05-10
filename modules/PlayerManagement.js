@@ -1,3 +1,4 @@
+// File which handles the player management and passes the created players to the game
 const minPlayers = 1;
 const maxNameLength = 10;
 const darkestVal = 20;
@@ -13,7 +14,7 @@ if (item != null)
     playerData = JSON.parse(item);
 }
 
-
+// Removes a player from the listing
 function removePlayer(name)
 {
     for (let i = 0; i < playerData.length; i++)
@@ -27,6 +28,7 @@ function removePlayer(name)
     }
 }
 
+// Rebuilds the list of players
 function updatePlayerList()
 {
     let ulEl = document.getElementById("playersList");
@@ -70,6 +72,7 @@ let selectedButton = null;
 let selectedButtonPrevText = "";
 let selectedPlayer = null;
 let leftButton = true;
+// Marks a button for key selection
 function selectButton(button, playerData, left)
 {
     if (selectedButton != null)
@@ -86,12 +89,12 @@ function selectButton(button, playerData, left)
     button.innerText = "?";
 }
 
-
+// Selects the key for the marked button
 document.addEventListener("keydown", (e) =>
 {
     if (selectedButton == null) return;
 
-    selectedButton.innerText = e.key;
+    selectedButton.innerText = transformKey(e.key);
     selectedButton.style.backgroundColor = bindingButtonDefault;
     if (leftButton) {
         selectedPlayer.left = e.key;
@@ -103,6 +106,37 @@ document.addEventListener("keydown", (e) =>
     e.preventDefault();
 });
 
+// Transforms long key names to their respective ascii signs
+function transformKey(key)
+{
+    let keyMap = {
+        "ArrowLeft": "←",
+        "ArrowRight": "→",
+        "ArrowUp": "↑",
+        "ArrowDown": "↓",
+        "Escape": "⎋",
+        "Enter": "⏎",
+        "Tab": "⇥",
+        "Backspace": "⌫",
+        "Delete": "⌦",
+        "Home": "⇱",
+        "End": "⇲",
+        "PageUp": "⇞",
+        "PageDown": "⇟",
+        "Control": "Ctrl",
+        "Alt": "Alt",
+        "Shift": "Shift",
+        "Meta": "⊞",
+    };
+    
+    if (keyMap.hasOwnProperty(key)) {
+      return keyMap[key];
+    }
+    
+    return key.charAt(0);
+}
+
+// Ads a player to the listing
 function addPlayer() 
 {
     let playerNameEl = document.getElementById("playerName");
@@ -139,6 +173,7 @@ function addPlayer()
 }
 document.getElementById("addPlayer").addEventListener("click", addPlayer);
 
+// Makes sure the name is not too long
 document.getElementById("playerName").addEventListener("input", function() 
 {
     if (this.value.length > maxNameLength)
@@ -146,6 +181,8 @@ document.getElementById("playerName").addEventListener("input", function()
         this.value = this.value.slice(0, maxNameLength);
     }
 });
+
+// Adds a player when enter is pressed
 document.getElementById("playerName").addEventListener("keypress", function(event)
 {
     if (event.key === "Enter") {
@@ -156,6 +193,7 @@ document.getElementById("playerName").addEventListener("keypress", function(even
 
 
 const startGameButtonEl = document.getElementById("startGame");
+// Starts the game if all the conditions are met
 startGameButtonEl.addEventListener("click", () => 
 {   
     if (playerData.length < minPlayers)
@@ -190,6 +228,7 @@ helpButton.addEventListener("click", changeHelpVisible);
 closeHelpButton.addEventListener("click", changeHelpVisible);
 
 let helpVisible = false;
+// Makes the help section visible and invisible
 function changeHelpVisible()
 {
     helpVisible = !helpVisible;
@@ -209,6 +248,7 @@ randomColorEl.addEventListener("click", () =>
     randomizeSelectedColor();
 });
 
+// Randomizes the selected color
 function randomizeSelectedColor()
 {
     let playerColorEl = document.getElementById("playerColor");
