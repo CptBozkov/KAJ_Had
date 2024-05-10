@@ -18,8 +18,6 @@ export class Game
 
     #onRoundEndCallacks;
 
-    #powerUpSpawnerId;
-
     constructor(mapSizeX, mapSizeY, maxPoints=5, countdownSecs=2 )
     {
         this.#players = [];

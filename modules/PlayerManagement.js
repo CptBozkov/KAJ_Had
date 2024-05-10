@@ -48,13 +48,13 @@ function updatePlayerList()
         buttonRemove.addEventListener("click", removePlayer.bind(null, p.name));
         
         const buttonLeft = document.createElement("button");
-        buttonLeft.textContent = p.left;
+        buttonLeft.textContent = transformKey(p.left);
         buttonLeft.className = "player-listing-binding"
         buttonLeft.style.backgroundColor = bindingButtonDefault;
         buttonLeft.addEventListener("click", selectButton.bind(this, buttonLeft, p, true));
         
         const buttonRight = document.createElement("button");
-        buttonRight.textContent = p.right;
+        buttonRight.textContent = transformKey(p.right);
         buttonRight.className = "player-listing-binding"
         buttonRight.style.backgroundColor = bindingButtonDefault;
         buttonRight.addEventListener("click", selectButton.bind(this, buttonRight, p, false));
