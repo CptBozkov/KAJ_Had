@@ -19,7 +19,7 @@ export class Game
 
     #powerUpSpawnerId;
 
-    constructor(mapSizeX, mapSizeY, maxPoints=3, countdownSecs=2 )
+    constructor(mapSizeX, mapSizeY, maxPoints=5, countdownSecs=2 )
     {
         this.#players = [];
         this.#maxPoints = maxPoints;
@@ -170,6 +170,7 @@ export class Game
         if (!collisionHappened) return;
         
         //check game state
+        let playerWon = false;
         let survivors = [];
         for (let i = 0; i < this.#players.length; i++)
         {
@@ -195,7 +196,7 @@ export class Game
             if (survivor.getPoints() >= this.#maxPoints)
             { 
                 setTimeout(this.#canvas.writeMessage.bind(this.#canvas, `${survivor.getName()} wins the match!`, survivor.getColor()), 500);
-                this.#reset();
+                playerWon = true;
             }
         }
         if (survivors.length <= 1)
@@ -203,7 +204,23 @@ export class Game
             this.#stopMainLoop();
             this.#stopCountdown();
             this.#processCalbacks(this.#onRoundEndCallacks);
-            setTimeout(this.#startNextRound.bind(this), 2500);
+            
+            if (!playerWon)
+            {
+                setTimeout( () => 
+                { 
+                    this.#startNextRound();
+                } , 2500);
+            }
+            else 
+            {
+                setTimeout( () => 
+                { 
+                    this.#reset();
+                    this.#processCalbacks(this.#onRoundEndCallacks);
+                    this.#startNextRound();
+                } , 5000);
+            }
         }
     }    
 
