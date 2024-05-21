@@ -164,6 +164,9 @@ form {
 
 .container-startGame {
     animation: slideDownwards 1.2s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes slideToTheRight {
@@ -254,4 +257,56 @@ body:not(.helpPopUp-visible) .main {
         overflow-y: auto;
         max-height: 600px;
     }
+}
+
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform-origin: center;
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform-origin: center;
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate {
+    from {
+        -moz-transform-origin: center;
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform-origin: center;
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes rotate {
+    from {
+        -o-transform-origin: center;
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform-origin: center;
+        -o-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform-origin: center;
+        transform: rotate(0deg);
+    }
+    to {
+        transform-origin: center;
+        transform: rotate(360deg);
+    }
+}
+
+#rect {
+    -webkit-animation: rotate 4s linear infinite;
+    -moz-animation: rotate 4s linear infinite;
+    -o-animation: rotate 4s linear infinite;
+    animation: rotate 4s linear infinite;
 }
