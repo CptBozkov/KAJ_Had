@@ -169,6 +169,12 @@ form {
     align-items: center;
 }
 
+.container-svg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @keyframes slideToTheRight {
     0% {transform: translateX(-50%);}
     50% {transform: translateX(-50%);}
@@ -261,52 +267,102 @@ body:not(.helpPopUp-visible) .main {
 
 
 @-webkit-keyframes rotate {
-    from {
+    0% {
         -webkit-transform-origin: center;
-        -webkit-transform: rotate(0deg);
+        -webkit-transform: translateX(-45%) scale(0.5) rotate(0deg);
     }
-    to {
+    25% {
         -webkit-transform-origin: center;
-        -webkit-transform: rotate(360deg);
+        -webkit-transform: translateX(-45%) scale(0.75) rotate(0deg);
+    }
+    50% {
+        -webkit-transform-origin: center;
+        -webkit-transform: translateX(45%) scale(0.5) rotate(180deg);
+    }
+    75% {
+        -webkit-transform-origin: center;
+        -webkit-transform: translateX(45%) scale(0.75) rotate(180deg);
+    }
+    100% {
+        -webkit-transform-origin: center;
+        -webkit-transform: translateX(-45%) scale(0.5) rotate(360deg);
     }
 }
 
 @-moz-keyframes rotate {
-    from {
+    0% {
         -moz-transform-origin: center;
-        -moz-transform: rotate(0deg);
+        -moz-transform: translateX(-45%) scale(0.5) rotate(0deg);
     }
-    to {
+    25% {
         -moz-transform-origin: center;
-        -moz-transform: rotate(360deg);
+        -moz-transform: translateX(-45%) scale(0.75) rotate(0deg);
+    }
+    50% {
+        -moz-transform-origin: center;
+        -moz-transform: translateX(45%) scale(0.5) rotate(180deg);
+    }
+    75% {
+        -moz-transform-origin: center;
+        -moz-transform: translateX(45%) scale(0.75) rotate(180deg);
+    }
+    100% {
+        -moz-transform-origin: center;
+        -moz-transform: translateX(-45%) scale(0.5) rotate(360deg);
     }
 }
 
 @-o-keyframes rotate {
-    from {
+    0% {
         -o-transform-origin: center;
-        -o-transform: rotate(0deg);
+        -o-transform: translateX(-45%) scale(0.5) rotate(0deg);
     }
-    to {
+    25% {
         -o-transform-origin: center;
-        -o-transform: rotate(360deg);
+        -o-transform: translateX(-45%) scale(0.75) rotate(0deg);
+    }
+    50% {
+        -o-transform-origin: center;
+        -o-transform: translateX(45%) scale(0.5) rotate(180deg);
+    }
+    75% {
+        -o-transform-origin: center;
+        -o-transform: translateX(45%) scale(0.75) rotate(180deg);
+    }
+    100% {
+        -o-transform-origin: center;
+        -o-transform: translateX(-45%) scale(0.5) rotate(360deg);
     }
 }
 
 @keyframes rotate {
-    from {
+    0% {
         transform-origin: center;
-        transform: rotate(0deg);
+        transform: translateX(-45%) scale(0.5) rotate(0deg);
     }
-    to {
+    25% {
         transform-origin: center;
-        transform: rotate(360deg);
+        transform: translateX(-45%) scale(0.75) rotate(0deg);
+    }
+    50% {
+        transform-origin: center;
+        transform: translateX(45%) scale(0.5) rotate(180deg);
+    }
+    75% {
+        transform-origin: center;
+        transform: translateX(45%) scale(0.75) rotate(180deg);
+    }
+    100% {
+        transform-origin: center;
+        transform: translateX(-45%) scale(0.5) rotate(360deg);
     }
 }
 
 #rect {
-    -webkit-animation: rotate 4s linear infinite;
-    -moz-animation: rotate 4s linear infinite;
-    -o-animation: rotate 4s linear infinite;
-    animation: rotate 4s linear infinite;
+    border: 3px solid var(--primary-variant);
+    border-radius: 5px;
+    -webkit-animation: rotate 4s ease infinite;
+    -moz-animation: rotate 4s ease infinite;
+    -o-animation: rotate 4s ease infinite;
+    animation: rotate 4s ease infinite;
 }
